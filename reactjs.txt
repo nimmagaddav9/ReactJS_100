@@ -592,71 +592,356 @@ Q59 What is the role of useEffect(). How it works & what is its use?
 The useEffect Hook in React is used to perform side effects in functional components.
 For example, data fetching from API, subscriptions or any other operation that needs to be performed after the component has been rendered.
 
+Q60. What is useEffect() hook and when to use it?
+useEffect()  is called after the component renders. Example: side effects.
+useEffect() function will accept 2 parameter: (Effect function, dependency array)
 
-Q60 What is Dependency Array in useEffect() hook?
-Q61 What is the meaning of the empty array[] in the useEffect()?
+Q61 What is Dependency Array in useEffect() hook?
+Dependecies array(optional) act as triggers for useEffect to rerun;meaning if any of the dependencies values change, the code inside useEffect() will be executed again.
+Ex: userId --> due to multiple dependencies
+
+Q62 What is the meaning of the empty array[] in the useEffect()?
+An Empty array[] indicates that the effect function should only run once.
 
 React- 8 Hooks -useContext/useReducer
-Q62 What is the role of useContaxt() hook?
-Q63 What is createContext() method? what are Provider & Consumer Properties?
+
+Q63 What is the role of useContext() hook?
+useContext in React provides a way to pass data from parent to child component without using props.
+avoid prop drilling.
+
+
+Q64 What is createContext() method? what are Provider & Consumer Properties?
+createContext() function returns an object with Provider and Consumer properties.
+The Provider property is responsible for providing the context value to all its child components.
+useContext() method or Consumer property can be used to consume the context value in child components.
+
+
 Q64 When to use useContext hook instead of props in real application?
+Use useContext instead of props when you want to avoid prop drilling and access context values directly within deeply nested components.
+
+Props are good from component 1 --> component 2
+useContext is good for multiple components  Ex: Comp1--> Comp2--> Comp3 -->Comp4
+
+Advantages:
+1. Theme Switching(Dark/Light): you can centralize and pass the theme selection of the application from the parent to all the deep child components.
+2. Localization(language selection): you can centralize and pass the language selection of the application from the parent to all the child components.
+3. Centralize Configure settings: Common configuration settings like API endpoints can be centralized and change in the parent component will pass the setting to all its child components.
+4. User Preferences: Any other user preferences apart from theme and localization can also be centralized.
+5. Notification System: Components that trigger or display notifications can access the notification state from the context.
+
+React- 11 Component LifeCycle Method-1 
+
+Q65 What are component life cycle phases? 3
+
+Component Life cycle Phases.
+1. Mounting Phase. (Component creation started) - This phase occurs when an instance of a component is being created and inserted into the DOM.
+2. Updating Phase (Component updates): This phase occurs when a component is being re-rendered as a result of changes to either its props or state.
+3. Unmounting Phase(Removal from the DOM): This phase occurs when a component is being removed from the DOM.
 
 
-*** No Answer *** 
-Q65 what are the similarities between useState() & useReducer() hook?
-Q66 what is useReducer() hook? When to use useState() & when useReducer()?
-Q67 What are the differences between useState() & useReducer() hook?
-Q68 What are dispatch & reducer function in useReducer hook?
-Q69 What is the purpose of passing initial state as an object in useReducer?
+Q66 What are component life cycle methods?
 
-*** React 9 & 10 topics missing ****
-React- 11 Component LifeCycle Method-1 2:05:24
-Q70 What are component life cycle phases?
-Q71 What are component life cycle methods?
-Q73 What are constructors in class components ? when to use them?
-Q74 What is the role of super keyword in constructor?
-Q75 what is the role of render() method in component life cycle?
-Q76 How the state can be maintained in a class component?
-Q77 What is the role of componentDidMount() method in component life cycle?
+Component lifecycle methods are special methods that get called at various stages of a component's life.
+Mounting Phase:
+=====================
+1. constructor()
+2. getDerivedStateFromProps()
+3. render()
+4. componentDidMount()
 
-*** React 12 topics missing ****
+Updating Phase
+====================
+render()
+componentDidUpdate()
+getDerivedStateFromProps()
+shouldComponentUpdate()
+getSnapshotBeforeUpdate()
+
+Unmounting Phase
+========================
+componentWillUnmount()
+
+
+
+Q67 What are constructors in class components ? when to use them?
+
+Mounting Phase
+===============
+Constructor()
+
+constructor is a special method that is called when an instance of the class is created.
+Constructor is used to intializing the component's state or performing any setup that is needed before the component is rendered.
+
+Q68 What is the role of super keyword in constructor?
+
+super keyword is used in the constructor of a class component to call the constructor of the parent class.
+This is necessary to ensure that the initialization logic of the parent class is executed.
+
+class ConstructorExample extends Component{
+    constructor(props){
+        super(props);
+
+        //Initalize the State
+        this.state = {
+            count: 0,
+        ;}
+    }
+    render(){
+        return(
+            <h2> Count:{this.state.count}</h2>
+        );
+    }
+}
+
+export default ConstructorExample;
+
+
+Q69 what is the role of render() method in component life cycle?
+
+Mounting Phase, Updating Phase -- render()
+
+Render() method returns the React elements that will be rendered to the DOM.
+
+
+Q70 How the state can be maintained in a class component?
+
+Two step process to maintain state:
+
+1. this.setState() method is used to update the state.
+2. this.state property is used to render the update state in DOM.
+
+class StateComponent extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            count: 0; //initializing the state
+        };
+    }
+    render(){
+        return(
+            <div>
+                <h2>Counter: {this.state.count}</h2>
+                <button onClick={this.handleInc}>Increment</button>
+            </div>
+        );
+    }
+    handleInc = () =>{
+        this.setState((prevState)=>({
+            count: prevState.count + 1,
+        }));
+    };
+}
+
+export default StateComponent;
+
+Q71 What is the role of componentDidMount() method in component life cycle?
+
+ComponentDidMount() lifecycle method in React is the part of mounting phase and is called after a component has been rendered to the DOM.
+Mostly used for side effects. For example, external data fetching or setting up subscriptions.
+
+Mounting Phase
+===============
+componentDidMount()
+
+1. Rendered after constructor intialization.
+2. Rendered after componentDidMount() to run side effects(ex: loading data from external API) and then call render() method of updating phase again.
+
+
 React- 13 Controlled & Uncontrolled Components
-Q78 What are controlled components in React?
-Q79 What are the differences btw Controlled & 
-Uncontrolled components?
-Q80 What are characteristics of controlled components?
-Q81 What are the advantages of using controlled components in React forms?
-Q82 How to handle forms in React?
-Q83 How can you handle multiple input fields in a controlled form?
-Q84 How do you handle form validation in a controlled component?
-Q85 In what scenarios might using uncontrolled components be advantageous?
+
+Q72 What are controlled components in React?
+A controlled component is a component whose form elements(like input fields or checkboxes) are controlled by the state of the application.
+
+
+Q73 What are the differences btw Controlled & Uncontrolled components?
+
+Controlled Components                                               Uncontrolled Components
+1. Values are controlled by React State.                            1.Values are not controlled by React State.
+2. Event handlers update React state.                               2. No explicit state update; values can be accessed directly from the DOM.
+3. Don't depend on useRef()                                         3. Commonly uses useRef() to access form element values.
+4. Re-renders on state changes.                                     4. Less re-rendering since values are not directly tied to React state.
+5. A recommended and standard practice for form handling in React.  5. useful in certain scenarios but less commonly considered a best pratice.
+
+
+Q74 What are characteristics of controlled components?
+
+characteristics of controlled components:
+1. State Control: The value of the form element is stored in the component's state.
+2. Event Handling: Changes to the form element trigger an event(e.g., onChange for input fields)
+3. State Update: The event handler updates the component's state with the new value of the form element.
+4. Re-rendering: The Component re-renders with the updated state, and the form element reflects the new value.
+
+Q75 What are the advantages of using controlled components in React forms?
+
+Top 3 benefits of using controlled components in React forms:
+1. In controlled components, form elements have their values managed by React State, ensuring a single source of truth.
+2. This approach facilitated predicatable and synchronized updates, making it easier to implement features such as form validation, and dynamic rendering, and seamless integration with React's lifecyle methods.
+3. Controlled Components offer better control and maintainability compared to uncontrolled components, making them the best pratice for handling forms in React applications.
+
+
+Q76 How to handle forms in React?
+The preferred and recommended approach for handling forms in React is by Using controlled components.
+
+
+Q77 How can you handle multiple input fields in a controlled form?
+Maintain separate state variables for each input field and update them individually using the onChange event.
+
+
+Q78 How do you handle form validation in a controlled component?
+By using conditional rendering based on the state and validate input values before updating the state.
+
+Q79 In what scenarios might using uncontrolled components be advantageous?
+Uncontrolled components can be beneficial when integrating with non-React libraries, or when dealing with forms where controlled components are not possible.
+
 
 *** React- 14 Code Splitting 
-Q86 What is code splitting in React?
-Q87 How to implement code splitting in React?
-Q88 What is the role of Lazy & Suspense methods 
-in React?
-Q89 What are the Pros & Cons of code splitting?
-Q90 What is the role of the import function in 
-code splitting?
-Q91 What is the purpose of the fallback prop in 
-suspense?
-Q92 Can you dynamically load css files using code 
-splitting in React?
-Q93 How do you inspect & analyze the generated 
-chunks in React application?
+
+Q80 What is code splitting in React?
+Code splitting is a technique to split the JavaScript bundle into smaller chunks, which are loaded on-demand.
+
+Q81 How to implement code splitting in React?
+3 steps for code splitting in React:
+1. Use React.lazy() to lazily import components.
+2. wrap components with Suspense to handle loading.
+3. Configure your build tool(e.g webpack) for dynamic imports.
+
+Q82 What is the role of Lazy & Suspense methods in React?
+React.lazy is a function that allows you to load a component lazily.
+It enables code splitting by allowing you to import a component asynchronously/dynamically, meaning component is loaded only when needed only.
+
+The Suspense component is used to display a fallback UI while the lazily loaded component is being fetched.
+
+
+Q83 What are the Pros & Cons of code splitting?
+
+5 Pros of Code Splitting:
+1. Faster Initial Load Time:  Code splitting reduces the initial load time of your application by only loading the necessary code for the current view or feature. Good for performance.
+2. Optimized Bandwidth Usage: By Loading only, the code needed for a specific page, it reduces the amount of data transferred over the network. Good for slow network.
+3. Improved caching: Smaller, more focused code chunks are more likely to be cached by the browser.
+4. parallel loading: Multiple smaller chunks can be loaded simuntaneously, leading to faster overall loading times.
+5. Easier Maintenance: Code splitting can make your codebase more modular, independent and easier to maintain.
+
+5 Cons of code splitting:
+1. Complexity: Implementing code splitting introduces additional complexity to your application. This complexity can make the development process slow.
+2. Tooling Dependecies: Proper code splitting often requires specific build tools and configurations, such as Webpack and Babel. Managing these tools is challenging.
+3. Potential for Runtime Errors: Dynamically loading code at runtime can introduce the possibility of runtime errors. careful testing is necessary to catch such issues.
+4. Increased Number of Requests: Code splitting may increase the number of HTTP requests needed to fetch all the necessary chunks. This can impact performance.
+5: Learning Curve: Developers who are new to code splitting may need time to understand the concepts and best practices. This can be a challenging.
+
+
+Q84 What is the role of the import() function in code splitting?
+The import() function returns a promise that allow dynamic loading of modules.
+
+Q85 What is the purpose of the fallback prop in Suspense?
+The fallback prop provides a loading indicator or UI while the dynamically imported component is being loaded.
+
+Q86 Can you dynamically load css files using code splitting in React?
+Yes, using dynamic import() for CSS files allows you to load styles on-demand along with the corresponding components.
+
+Q87 How do you inspect & analyze the generated chunks in React application?
+Use tools like Webpack Bundle Analyzer to analyze the size and composition of chunks.
 
 *** React- 15 Others
-Q94 What is a higher-order component in React?
-Q95 What are the 5 Ways to Style React components ? Explain inline styles?
-Q96 What are the difference between React & React Native?
-Q97 What is GraphQL?
+
+Q88 What is a higher-order component in React?
+A Higher-Order Component is a component which takes another component as an argument and adds extra features to another component.
+HOC can be used for providing logging functionality to all the components in a reusable way.
+
+
+Q89 What are the 5 Ways to Style React components ? Explain inline styles?
+
+we use separate style sheets.
+5 ways to style React components
+1. Inline styles
+2. CSS Stylesheets
+3. CSS-modules
+4. Global Stylesheets
+5. CSS Frameworks
+
+
+Q90 What are the difference between React & React Native?
+
+React                                                           React Native
+1. React is a library.                                          1. React Native is a framework.
+2. React is used for building web interfaces.                   2. React native is used for building mobile applications.
+3. Run on web browsers.                                         3. Run on IOS and Android platforms.
+4. HTML and CSS are used for UI.                                4. Native UI Components(e.g., View, Text) are used for UI.
+5. Deployed as web applications.                                5. Deployed through app stores(e.g., App store, Google Play)
+
+
+Q91 What is GraphQL?
+GraphQL is a query language for APIs(Application Programming Interfaces) and a runtime for executing those queries with your exisitng data.
+GraphQL and React are often used together. React components can use GraphQL queries to fetch the data required for rendering.
+
 Q98 What are the Top 3 ways to achieve state management? when to use what in React?
-Q99 How can you implement authentication in a React application?
-Q100 What is the use of React Profiler?
-Q101 What is the difference between Fetch & Axios for API calls in React?
-Q102 What are the popular Testing Libraries for React?
-Q103 How can you Optimize Performance in React application?
-Q104 Explain Reactive Programming with example?
-Q105 In how many ways can we implement Reactive Programming in React?
-Q106 How to pass data from child component to parent component in React?
+1. useState Hook: 
+    When to use: Simple component-level state.
+    Reason: Ideal for applications having small components and isolated state because it is Lightweight and built into React only.
+2. Context API:
+    When to use: Prop drilling avoidance for sharing global data.
+    Reason: Simplifies data passing through the component tree, reducing the need for manual prop drilling.
+3. Redux:
+    When to use: Large-scale applications with complex state.
+    Reason: Centralized store and actions provide a predicatable state management pattern, aiding in debugging and scalability.
+
+Q92 How can you implement authentication in a React application?
+
+Front-end/Client-side                                               Middleware/server-side/backend(node.js, asp.net, django)
+
+browser                     1. POST:{username, password}           2. authenticate & create JWT Token
+                            3. Return Response {JWT token}
+4. Store JWT token at local storage
+                            5. Request Data{JWT token: Header}     6. Validate token signature
+
+                            7. Send Data
+8. Display data on browser
+
+Q93 What is the use of React Profiler?
+React Profiler is a set of tools in React that allows developers to profile(analyze) the performance of a React application.
+
+
+Q94 What is the difference between Fetch & Axios for API calls in React?
+
+Fetch                                                                                                   Axios
+1. fetch is a built-in JS function, so doesn't require any additional libraires.                        1. Axios is a third-party library, that simplifies the process of making HTTP requests.
+2. fetch returns Promises, making it easy to work with asynchromous code using async/await syntax.      2. Axios allows you to use interceptors, which can be good for tasks like request/response logging, authentication, and error handling.
+3. If you want to keep http requests simple, fetch is a good choice.                                    3. If you want to intercept http request/response or improve error handling then Axios has more features to do it.
+
+
+Q95 What are the popular Testing Libraries for React?
+
+Jest
+React Testing Library
+Enzyme
+Cypress
+
+Q96 How can you Optimize Performance in React application?
+1. Memoization with useMemo and useCallback:  Use this hooks to memoize values and, reducing unnecessary recalculations.
+2. Optimizing Renders with React.Fragment: Use it to avoid unnecessary wrapper elements that could cause additional DOM nodes.
+3. Lazy loading with React.lazy: Use it to load components lazily, reducing the intial bundle size and imporving intial loading performance.
+4. Code splitting: Employ code splitting to divide your application into smaller chunks that are loaded on demand, improving initial load times.
+5. Optimizing Images and Assets:  Compress and optimize images, use responsive images and leverage lazy loading for images to reduce network and rendering overhead.
+
+
+Q97 Explain Reactive Programming with example?
+Reactive programming is a programming paradigm that focuses on reacting to changes and events in a declarative and asynchronous manner.
+Ex: Google search type --> gives hints --> events are captured.
+
+Declarative means a programming style where you write the code for what you want to achieve, rather than specifying step-by-step how to achieve it.
+For Ex: JSX in React has declarative syntax.
+
+Asynchronously means an action that doesn't block other actions.
+
+Q98 In how many ways can we implement Reactive Programming in React?
+
+1. State and Props: Reacting to changes in local component state and passing data reactively through props.
+2. React Hooks: Leveraging useState and useEffect hooks for managing state and side effects in functional components.
+3. Event Handling: Reacting to user interactions through event handling and updating state accordingly.
+4. Context API: sharing and managing global state reactively across components using the Context API.
+5. Redux: using state management libraries like Redux for managing complex application state reactively.
+6. Component LifeCycle Methods: Using class components and lifecycle methods for handling side effects and updates.
+7. Async/await: utilizing async/await syntax for handling asynchronous operations reactively.
+8. RxJS and Observables: Levering RxJS for handling aysnchronous operations and data streams in a reactive manner.
+
+Q99 How to pass data from child component to parent component in React?
+Parent provides a callback function to child and then child component can then invoke this callback to pass data back to the parent.

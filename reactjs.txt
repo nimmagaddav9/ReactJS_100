@@ -238,146 +238,425 @@ The index.js file is the javascript file that replaces the root element of the i
 
 
 Q26 What is the role of App.js file in React?
-Q27 56:52 What is the role of function & return inside 
-App.js?
-Q28 58:43 Can we have function without a return inside 
-App.js?
-Q29 1:00:28 What is the role of export default inside 
-App.js?
-Q30 1:01:25 Does the file name & component name must be 
-same in React?
-React -4 JSX - 1:02:04
-Q31 1:02:48 What is the role of JSX in React?
-Q32 1:04:56 What are the 5 Advantages of JSX?
-Q33 1:07:15 What is Babel?
-Q34 1:08:29 What is the role of Fragment in JSX?
-Q35 1:10:35 What is Spread Operator in JSX?
-Q36 1:11:55 What are the types of Conditional Rendering 
-in JSX?
-Q37 1:14:50 How do you iterate over a list in JSX? What 
-is map() method?
-Q38 1:17:39 Can a browser read a JSX file?
-Q39 1:18:01 What is Transpiler? What is the difference 
-between Compiler & Transpiler?
-Q40 1:19:26 Is it possible to use JSX without React?
-React- 5 Components-Functional/Class 1:19:57
-Q41 1:20:47 What are React Components ? what are the main 
-elements of it?
-Q42 1:22:38 What are the Types of React Components? What 
-are Functional Components?
-Q43 1:23:41 How do you pass data between functional 
-components in React?
-Q44 1:23:58 What is Prop Drilling in React?
-Q45 1:25:06 Why to Avoid Prop Drilling? In how many ways 
-avoid Prop Drilling?
-Q46 1:27:36 What are class components in React?
-Q47 1:29:18 How to pass data between class components in 
-React?
-Q48 1:30:30 What is the role of this keyword in class 
-components?
-Q49 1:32:05 What are the 5 differences btw Functional 
-components & class components? 
-React- 6 Routing 1:34:09
-Q50 1:34:43 What is Routing and Router in React?
-Q51 1:36:02 How to implement Routing in React?
-Q52 1:37:47 What are the roles of <Routes> & <Route> 
-component in React Routing?
-Q53 1:39:12 What are Route Parameters in React Routing?
-Q54 1:39:52 What is the role of Switch Component in React 
-Routing?
-Q55 1:41:05 What is the role of exact prop in React 
-Routing?
-React- 7 Hooks -useState/useEffect 1:42:04
-Q56 1:42:39 What are React Hooks? What are the Top React 
-Hooks?
-Q57 1:44:32 What are State, Stateless, Stateful and State 
-Management terms?
-Q58 1:47:39 What is the role of useState() hook and how 
-it works?
-Q59 1:52:08 What is the role of useEffect(). How it works 
-& what is its use?
-Q60 1:56:13 What is Dependency Array in useEffect() hook?
-Q61 1:58:25 What is the meaning of the empty array[] in 
-the useEffect()?
-React- 8 Hooks -useContext/useReducer 1:59:12
-Q62 1:59:53 What is the role of useContaxt() hook?
-Q63 2:02:40 What is createContext() method? what are 
-Provider & Consumer Properties?
-Q64 2:03:59 When to use useContext hook instead of props 
-in real application?
+
+App.js file contain the root component(App) of React Application.
+
+App Component is like a container for other components.
+
+App.js defines the structure, layout, and routing in the application.
+
+
+Q27 What is the role of function & return inside App.js?
+
+1. The function keyword is used to define a JavaScript function that represent your React component.
+2. function is like a placeholder which contains all the code or logic of component.
+3. The function takes in props as its argument(if needed) and return JSX.
+return is used to return the element from the function.
+
+Q28 Can we have function without a return inside App.js?
+
+Yes, a function without a return statement is possible.
+In that case, your component will not render anything in UI.
+The common use case is for logging purpose.
+
+Using arrow function
+
+const FuncWithoutReturn = ()=>{
+    console.log("no return");
+}
+
+Q29 What is the role of export default inside App.js?
+Export statement is used to make a component available for import using "import" statement in other files.
+
+import React from "react";
+
+const AppChild = (props) =>{
+    return <h1>hi</h1>
+}
+
+export default AppChild;
+
+
+Q30 Does the file name & component name must be same in React?
+
+No, the file name and the component name don't have to be the same.
+However, it is recommended to keep the same for easier to organize and understand your code.
+
+React -4 JSX
+
+Q31 What is the role of JSX in React? (3 points)
+
+1. JSX stands for JavaScript XML.
+2. JSX is used by React to write HTML-Like code.
+3. JSX is converted to Javscript via tools like Babel.(Because browsers understand JavaScript not JSX.)
+
+function App(){
+    return(
+        <div className="App">
+            <h1>Hello!</h1>
+        </div>
+    );
+}
+
+Q32 What are the 5 Advantages of JSX?
+
+1. Improve code readability and writability
+2. Error checking in advance(Type safety)
+3.support JavaScript expressions
+4. Improved performance
+5. code Reusability.
+
+
+Q33 What is Babel?
+
+Babel in React is used to transpile JSX syntax into regular Javscript which browser can understand.
+
+
+Q34 What is the role of Fragment in JSX?
+
+In React, a fragment is a way to group multiple children's elements.
+Using a Fragment prevents the addition of unnecessary nodes to the DOM.
+
+<Fragment>
+<div>vijay</div>
+<div>reactjs</div>
+</Fragment>
+
+Q35 What is Spread Operator in JSX?
+
+The Spread operator(...) is used to expand or spread an array or object.
+
+function App() {
+    const props = {name: "vijay", id:1};
+    return (
+        <ChildComponent {...props}/>
+    );
+}
+
+function ChildComponent(props){
+    return <div>{props.name},{props.id}</div>;
+}
+
+
+Q36 What are the types of Conditional Rendering in JSX?
+
+Conditional Rendering
+
+1. If /else statements 
+
+2. Ternary Operator
+
+3. && operator  - returns truthy value.
+
+4. Switch statement
+
+
+Q37 How do you iterate over a list in JSX? What is map() method?
+
+map() method allows you to iterate over an array and modify its elements using a callback function.
+
+
+Q38 Can a browser read a JSX file?
+
+No, browsers cannot directly interpret or understand JSX files. 
+Babel takes JSX and converts it into equivalent Javascript code that browsers can understand.
+
+
+Q39 What is Transpiler? What is the difference between Compiler & Transpiler?
+
+A Transpiler is a tool that converts source code from one high-level programming lanaguage(JSX) to another high-level programming language(JavaScript).
+Ex: Babel.
+
+A Compiler is a tool that converts high-level programming language (Java) into a lower-level language(machine code or byte code).
+
+
+Q40 Is it possible to use JSX without React? 
+
+Yes, it's possible to use JSX without React by creating your own transpiler like Babel.
+However, this is not recommended since JSX is tightly integrated with React and relies on many React-specific features.
+
+
+React- 5 Components-Functional/Class
+
+Q41 What are React Components ? what are the main elements of it?
+
+In React, a component is a reusable building block for creating user interfaces.
+
+//1. Import the React Library
+import React from "react";
+
+//2. Define a functional component
+function Component(){
+    //3. Return JSX to describe the component's UI
+    return(
+        <div>
+            <h1>react reusable component</h1>
+        </div>
+    );
+}
+
+//4. Export the component to make it available
+// for use in other files
+export default Component;
+
+Q42 What are the Types of React Components? What are Functional Components?
+
+Types of Components
+
+1. Functional Components: They are declared as a JavaScript function. 
+They are stateless component, but with the help of hooks, they can now manage state also.
+
+2. Class Components
+
+Q43 How do you pass data between functional components in React?
+
+props(properties) are a way to pass data from a parent component to a child component.
+
+Q44 What is Prop Drilling in React?
+Prop drilling is the process of passing down props through multiple layers of components.
+
+
+Q45 Why to Avoid Prop Drilling? In how many ways avoid Prop Drilling?
+1. Maintenance: Prop drilling can make code harder to maintain as changes in data flow require updates across multiple components.
+2. Complexity: It increases code complexity and reduces code reability.
+3. Debugging: Debugging becomes challenging when props need to be traced through numerous components.
+
+5 ways to avoid Prop Drilling
+
+1. Using Context API
+2. using Redux
+3. using Component Composition
+4. using Callback Functions
+5. Using Custom Hooks
+
+Q46 What are class components in React?
+
+1. Class Components are defined using JavaScript classes.
+2. They are stateful components by using the lifecycle methods.
+3. The render method in a class component is responsible for returning JSX.
+
+
+import React, {Component} from 'react';
+
+class AppClass extends Component{
+    render(){
+        return<h1>hello</h1>;
+    }
+}
+export default AppClass;
+
+
+Q47 How to pass data between class components in React?
+
+this.props can be used in child component to access properties/data passed from parent component.
+
+
+class ParentComponent extends Component{
+    render(){
+        const dataToSend = "hello from parent";
+        return(
+            <div>
+                <ChildComponent message={dataToSend} />
+            </div>
+        );
+    }
+}
+export deault ParentComponent;
+
+
+
+class ChildComponent extends Component{
+    render(){
+        return(
+            <div>
+                <p>Message:{this.props.message}</p>
+            </div>
+        );
+    }
+}
+
+export default ChildComponent;
+
+//output: Message: hello from parent
+
+
+
+Q48 What is the role of this keyword in class components?
+
+this keyword is used to refer to the instance of the class.
+
+
+Q49 What are the 5 differences btw Functional components & class components? 
+
+Functional Component                                                     Class Component
+
+1. Syntax: Defined as JS function.                                      1. Defined as a JS(Es6) class.
+2. State: Orginally stateless but can now maintain state using hooks.   2. Can Manage local state with this.state.
+3. Lifecycle methods: No                                                3. Yes
+4. Readbility: more readable & Concise.                                 4. Verbose(complex).
+5. this keyword: No                                                     5. Yes(Access props using this.props)
+6. Do not have render method.                                           6. have render method.
+
+
+React- 6 Routing
+
+Q50 What is Routing and Router in React?
+Routing: Routing allows you to create a single-page web application with navigation, without the need for a full-page refresh.
+React Router: React Router is a library for handling routing and enables navigation and rendering of different component based on the URL.
+
+
+Q51 How to implement Routing in React?
+Command to install router:
+npm install react-router-DOM
+
+Step1: Install React Router
+Step2: Create navigation
+Step3: Create Routes
+
+
+Q52 What are the roles of <Routes> & <Route> component in React Routing?
+The <Routes> Component is used as the root container for declaring your collection of routes.
+The <Route> component is used to define a route and specify the component that should render when the route matches.
+for example, if user enter websitename.com/about in url then matching "About" component will be rendered.
+
+Q53 What are Route Parameters in React Routing?
+Route parameters in React Router are a way to pass dynamic values(data) to the component as part of the URL path.
+
+// userId is the route parameters
+<Route path="/users/:userId" component={userProfile}/>
+
+
+Q54 What is the role of Switch Component in React Routing?
+Switch component ensures that only the first matching<Route> is rendered and rest is ignored.
+Example: Switch is commonly used to handle 404 or not found routes.
+
+Q55 What is the role of exact prop in React Routing?
+exact prop is used with the <Route> component to match exactly to the provided path.
+
+//with exact
+//only match about
+<Route path="/about" exact component={About} />     note: not supporting "/anout/team, /about/contact 
+
+
+React- 7 Hooks -useState/useEffect
+
+Q56 What are React Hooks? What are the Top React Hooks?
+1. React Hooks are inbuilt functions provided by React that allow functional components to useState and lifecycle features.
+2. Before Hooks, class components lifecycle methods were used to maintain state in React Applications.
+3. To use React hook first we first have to import it from React Library.
+
+//import React, {UseState} from "react":
+useState: State
+UseEffect: side effects
+useContext: Context
+useReducer: Complex State
+useCallback: Memoization
+useMemo: Performance
+useRef: Refs  
+useLayoutEffect: Synchornous Side effects.
+
+
+Q57 What are State, Stateless, Stateful and State Management terms?
+"state" refers to the current data of the component.
+Stateful or statemanagement means, when a user performs some actions on the UI, then the React application should be able to update and re-render that data or state on the UI.
+
+
+Q58 What is the role of useState() hook and how it works?
+
+The useState hook enables functional components to manage state.
+useState() working: useState() function accept the initial state value as the parameter and returns an array with 2 elements:
+1. The first element is the current state value(count in this code).
+2. Second element is the function that is used to update the state(setCount in this code).
+The concept of assign array elements to individual variables is called array destructing.
+
+import React, {useState} from "react";
+function UseState(){
+    //array destructing
+    const [count, setCount] = useState(0);
+    const increment = () =>{
+        setCount(count + 1);
+    }
+}
+
+return (
+    <div>
+    <p>Count:{count}</p>
+        <button onClick={increment}>Click</button>
+    </div>
+);
+export default UseState;
+
+
+Q59 What is the role of useEffect(). How it works & what is its use?
+
+The useEffect Hook in React is used to perform side effects in functional components.
+For example, data fetching from API, subscriptions or any other operation that needs to be performed after the component has been rendered.
+
+
+Q60 What is Dependency Array in useEffect() hook?
+Q61 What is the meaning of the empty array[] in the useEffect()?
+
+React- 8 Hooks -useContext/useReducer
+Q62 What is the role of useContaxt() hook?
+Q63 What is createContext() method? what are Provider & Consumer Properties?
+Q64 When to use useContext hook instead of props in real application?
+
+
 *** No Answer *** 
-Q65 what are the similarities between useState() & 
-useReducer() hook?
-Q66 what is useReducer() hook? When to use useState() & 
-when useReducer()?
-Q67 What are the differences between useState() & 
-useReducer() hook?
-Q68 What are dispatch & reducer function in useReducer 
-hook?
-Q69 What is the purpose of passing initial state as an 
-object in useReducer?
+Q65 what are the similarities between useState() & useReducer() hook?
+Q66 what is useReducer() hook? When to use useState() & when useReducer()?
+Q67 What are the differences between useState() & useReducer() hook?
+Q68 What are dispatch & reducer function in useReducer hook?
+Q69 What is the purpose of passing initial state as an object in useReducer?
+
 *** React 9 & 10 topics missing ****
 React- 11 Component LifeCycle Method-1 2:05:24
-Q70 2:06:12 What are component life cycle phases?
-Q71 2:08:03 What are component life cycle methods?
-Q73 2:09:55 What are constructors in class components ? 
-when to use them?
-Q74 2:12:13 What is the role of super keyword in 
-constructor?
-Q75 2:13:31 what is the role of render() method in 
-component life cycle?
-Q76 2:15:30 How the state can be maintained in a class 
-component?
-Q77 2:17:27 What is the role of componentDidMount() 
-method in component life cycle?
+Q70 What are component life cycle phases?
+Q71 What are component life cycle methods?
+Q73 What are constructors in class components ? when to use them?
+Q74 What is the role of super keyword in constructor?
+Q75 what is the role of render() method in component life cycle?
+Q76 How the state can be maintained in a class component?
+Q77 What is the role of componentDidMount() method in component life cycle?
+
 *** React 12 topics missing ****
-React- 13 Controlled & Uncontrolled Components 2:20:39
-Q78 2:20:53 What are controlled components in React?
-Q79 2:23:17 What are the differences btw Controlled & 
+React- 13 Controlled & Uncontrolled Components
+Q78 What are controlled components in React?
+Q79 What are the differences btw Controlled & 
 Uncontrolled components?
-Q80 2:25:18 What are characteristics of controlled 
-components?
-Q81 2:26:41 What are the advantages of using controlled 
-components in React forms?
-Q82 2:28:41 How to handle forms in React?
-Q83 2:28:55 How can you handle multiple input fields in a 
-controlled form?
-Q84 2:29:11 How do you handle form validation in a 
-controlled component?
-Q85 2:29:43 In what scenarios might using uncontrolled 
-components be advantageous?
-*** React- 14 Code Splitting 2:30:13
-Q86 2:30:50 What is code splitting in React?
-Q87 2:32:45 How to implement code splitting in React?
-Q88 2:35:58 What is the role of Lazy & Suspense methods 
+Q80 What are characteristics of controlled components?
+Q81 What are the advantages of using controlled components in React forms?
+Q82 How to handle forms in React?
+Q83 How can you handle multiple input fields in a controlled form?
+Q84 How do you handle form validation in a controlled component?
+Q85 In what scenarios might using uncontrolled components be advantageous?
+
+*** React- 14 Code Splitting 
+Q86 What is code splitting in React?
+Q87 How to implement code splitting in React?
+Q88 What is the role of Lazy & Suspense methods 
 in React?
-Q89 2:38:07 What are the Pros & Cons of code splitting?
-Q90 2:41:39 What is the role of the import function in 
+Q89 What are the Pros & Cons of code splitting?
+Q90 What is the role of the import function in 
 code splitting?
-Q91 2:42:06 What is the purpose of the fallback prop in 
+Q91 What is the purpose of the fallback prop in 
 suspense?
-Q92 2:42:32 Can you dynamically load css files using code 
+Q92 Can you dynamically load css files using code 
 splitting in React?
-Q93 2:42:55 How do you inspect & analyze the generated 
+Q93 How do you inspect & analyze the generated 
 chunks in React application?
+
 *** React- 15 Others
-Q94 2:43:58 What is a higher-order component in React?
-Q95 2:47:03 What are the 5 Ways to Style React components 
-? Explain inline styles?
-Q96 2:48:18 What are the difference between React & React 
-Native?
-Q97 2:49:38 What is GraphQL?
-Q98 2:50:45 What are the Top 3 ways to achieve state 
-management? when to use what in React?
-Q99 2:53:34 How can you implement authentication in a 
-React application?
-Q100 2:56:23 What is the use of React Profiler?
-Q101 2:57:49 What is the difference between Fetch & Axios 
-for API calls in React?
-Q102 3:00:34 What are the popular Testing Libraries for 
-React?
-Q103 3:00:58 How can you Optimize Performance in React 
-application?
-Q104 3:03:13 Explain Reactive Programming with example?
+Q94 What is a higher-order component in React?
+Q95 What are the 5 Ways to Style React components ? Explain inline styles?
+Q96 What are the difference between React & React Native?
+Q97 What is GraphQL?
+Q98 What are the Top 3 ways to achieve state management? when to use what in React?
+Q99 How can you implement authentication in a React application?
+Q100 What is the use of React Profiler?
+Q101 What is the difference between Fetch & Axios for API calls in React?
+Q102 What are the popular Testing Libraries for React?
+Q103 How can you Optimize Performance in React application?
+Q104 Explain Reactive Programming with example?
 Q105 In how many ways can we implement Reactive Programming in React?
 Q106 How to pass data from child component to parent component in React?
